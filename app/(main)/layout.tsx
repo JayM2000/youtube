@@ -8,11 +8,14 @@ const layout = ({ children }: { children: ReactNode }) => {
       <SiderMenu />
 
       <div>
-        <header className="w-full text-right">
+        {/* <header className="w-full text-right">
           <ModeToggle />
-        </header>
+        </header> */}
+        {/* <Header /> */}
 
         {children}
+
+        {/* <Footer /> */}
       </div>
     </div>
   );
