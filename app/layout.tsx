@@ -1,6 +1,9 @@
+import {
+  ClerkProvider
+} from '@clerk/nextjs';
 import type { Metadata } from "next";
-import { Fredoka } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { Fredoka } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -9,9 +12,9 @@ export const metadata: Metadata = {
 };
 
 const googleFonts = Fredoka({
-  subsets: ['latin'],
-  weight: ['400','700']
-})
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export default function RootLayout({
   children,
@@ -19,19 +22,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={googleFonts.className}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider afterSignOutUrl='/'>
+      <html lang="en" suppressHydrationWarning>
+        <body className={googleFonts.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
