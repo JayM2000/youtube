@@ -8,13 +8,9 @@ interface PropTypes {
   isCollapsed?: boolean;
 }
 const HeaderLogoMenu = ({ isCollapsed }: PropTypes) => {
-  if (!isCollapsed) {
-    return;
-  }
-
   return (
     <div
-      className={cn("flex items-center shrink-0")}
+      className={cn("flex items-center shrink-0", !isCollapsed ? "ml-2" : "")}
     >
       <SidebarTrigger />
       <Link href="/">

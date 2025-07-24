@@ -2,7 +2,6 @@
 
 import { Separator } from "@/components/ui/separator";
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
-import HeaderLogoMenu from "../home-navbar/header-logo-menu";
 import MainSection from "./main-section";
 import PersonalSection from "./personal-section";
 
@@ -11,8 +10,11 @@ const HomeSidebar = () => {
   // const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className="z-100 border-r-2 mt-[64px]">
-      <HeaderLogoMenu isCollapsed={false} />
+    <Sidebar
+      className="z-40 border-none box mt-[50px] pt-[14px] shadow-[1px_0px_5px_rgba(0,0,0,0.35)]"
+      collapsible="icon"
+    >
+      {/* <HeaderLogoMenu isCollapsed={false} /> */}
       <SidebarContent className="bg-background pb-[15px]">
         <MainSection />
         <Separator />

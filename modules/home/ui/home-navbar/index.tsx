@@ -11,7 +11,7 @@ const HomeNavbar = () => {
 
   return (
     <nav
-      className={`border fixed top-0 left-0 right-0 h-16 flex items-center px-2 pr-5 z-50 `}
+      className={`fixed shadow-[0px_1px_5px_rgba(0,0,0,0.35)] bg-background top-0 left-0 right-0 h-16 flex items-center px-2 pr-5 z-50 `}
     >
       <div className="flex items-center gap-4 w-full">
         {/* menu and logo */}
