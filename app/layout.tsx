@@ -1,10 +1,9 @@
-import {
-  ClerkProvider
-} from '@clerk/nextjs';
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Fredoka } from "next/font/google";
 import "./globals.css";
+import { TRPCProvider } from "@/trpc/client";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,17 +21,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider afterSignOutUrl='/'>
+    <ClerkProvider afterSignOutUrl="/">
       <html lang="en" suppressHydrationWarning>
         <body className={googleFonts.className}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          <TRPCProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </TRPCProvider>
         </body>
       </html>
     </ClerkProvider>
