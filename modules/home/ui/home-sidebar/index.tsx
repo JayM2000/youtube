@@ -1,12 +1,14 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, useSidebar } from "@/components/ui/sidebar";
 import MainSection from "./main-section";
 import PersonalSection from "./personal-section";
+import ThemeSwitcher from "@/components/Customs/theme-switcher";
+import { cn } from "@/lib/utils";
 
 const HomeSidebar = () => {
-  // const { state } = useSidebar();
+  const { isMobile } = useSidebar();
   // const isCollapsed = state === "collapsed";
 
   return (
@@ -15,10 +17,24 @@ const HomeSidebar = () => {
       collapsible="icon"
     >
       {/* <HeaderLogoMenu isCollapsed={false} /> */}
-      <SidebarContent className="bg-background pb-[15px]">
+      <SidebarContent
+        className={cn(
+          "bg-background pb-[15px]",
+          isMobile ? "basis-[93%]" : "basis-[85%]"
+        )}
+      >
         <MainSection />
         <Separator />
         <PersonalSection />
+      </SidebarContent>
+
+      <SidebarContent
+        className={cn(
+          "relative bg-background pb-[15px] w-full",
+          isMobile ? "basis-[8%]" : "basis-[15%]"
+        )}
+      >
+        <ThemeSwitcher />
       </SidebarContent>
     </Sidebar>
   );

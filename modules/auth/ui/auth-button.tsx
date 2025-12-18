@@ -4,18 +4,23 @@ import { Button, ButtonSty_1 } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { ClapperboardIcon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const AuthButton = () => {
+  const pathname = usePathname();
+
   return (
     <>
       {/* if sign in state then show these ui components */}
       <SignedIn>
-        <Button asChild variant="secondary">
-          <Link href="/studio">
-            <ClapperboardIcon />
-            Studio
-          </Link>
-        </Button>
+        {pathname !== "/studio" && (
+          <Button asChild variant="secondary">
+            <Link href="/studio">
+              <ClapperboardIcon />
+              Studio
+            </Link>
+          </Button>
+        )}
         <UserButton>
           <UserButton.MenuItems>
             <UserButton.Link

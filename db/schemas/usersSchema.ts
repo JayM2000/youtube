@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   pgTable,
   text,
@@ -5,6 +6,7 @@ import {
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
+import { videos } from "./videosSchema";
 
 export const users = pgTable(
   "users",
@@ -18,3 +20,9 @@ export const users = pgTable(
   },
   (t) => [uniqueIndex("clerk_id_idx").on(t.clerkId)]
 );
+
+export const userRelations = relations(users, ({ many }) => {
+  return {
+    videos: many(videos),
+  };
+});
