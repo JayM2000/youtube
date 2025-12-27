@@ -1,5 +1,9 @@
 name: Deploy to Vercel
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   push:
     branches:
@@ -29,10 +33,10 @@ jobs:
       #     NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-UP
       #     NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
       #     NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
-      #     CLERK_WEBHOOK_SIGNING_SECRET=whsec_DCOGql0XX4kf/pYKxxhTwAIOvRUH1Y5r
-      #     DATABASE_URL=postgresql://neondb_owner:npg_6csjQlUETMm1@ep-royal-cell-adsvinpn-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-      #     UPSTASH_REDIS_REST_URL="https://aware-kangaroo-44680.upstash.io"
-      #     UPSTASH_REDIS_REST_TOKEN="Aa6IAAIncDExZTg3NzlhNmE5ZDI0YzMzOTdhNWM1M2JiOTM3MTM5ZnAxNDQ2ODA"
+      #     CLERK_WEBHOOK_SIGNING_SECRET: ${{ secrets.CLERK_WEBHOOK_SIGNING_SECRET }}
+      #     DATABASE_URL:${{ secrets.DATABASE_URL }}
+      #     UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      #     UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
 
         # run: yarn build
 
@@ -44,7 +48,3 @@ jobs:
 
       - name: Deploy to Vercel
         run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
