@@ -165,6 +165,8 @@ function Sidebar({
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
 
+  // const themeSection = <div>hello in sidebar component</div>;
+
   if (collapsible === "none") {
     return (
       <div
@@ -199,6 +201,8 @@ function Sidebar({
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
+
+          {/* <div>{themeSection}</div> */}
           <div className="flex h-full w-full flex-col">{children}</div>
         </SheetContent>
       </Sheet>
@@ -241,11 +245,13 @@ function Sidebar({
         )}
         {...props}
       >
+        {/* <div>{state === "collapsed" && themeSection}</div> */}
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
           className="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
         >
+          {/* {state === "expanded" && themeSection} */}
           {children}
         </div>
       </div>
@@ -725,6 +731,5 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-  useSidebar
+  useSidebar,
 };
-

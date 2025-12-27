@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/components/Theming/ModeToggle";
 import { SearchIcon } from "lucide-react";
 
 const SarchInput = () => {
@@ -21,7 +20,7 @@ const SarchInput = () => {
       </button>
       {/* <div>helloworld</div> */}
 
-      <ModeToggle />
+      {/* <ModeToggle /> */}
     </form>
   );
 };
