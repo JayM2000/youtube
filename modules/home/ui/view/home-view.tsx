@@ -9,7 +9,6 @@ const HomeView = (props: HomeViewProps) => {
 
   return (
     <div className="max-w-[2400px] h-auto mx-auto mb-10 px-4 pt-2.5 flex flex-col gap-y-6">
-      Hello in category section field
       <CategorySection categoryId={categoryId} />
     </div>
   );
