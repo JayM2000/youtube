@@ -12,11 +12,10 @@ export const videos = pgTable("videos", {
       onDelete: "cascade",
     })
     .notNull(),
-  categoryId: uuid("category_id")
-    .references(() => categories.id, {
-      onDelete: "set null",
-    }),
-    // .notNull(),
+  categoryId: uuid("category_id").references(() => categories.id, {
+    onDelete: "set null",
+  }),
+  // .notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

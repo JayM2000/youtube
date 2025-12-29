@@ -54,8 +54,8 @@ export const studioRouter = createTRPCRouter({
         : null;
 
       return {
-        nextCursor,
         items,
+        nextCursor,
       };
     }),
 });
