@@ -85,26 +85,22 @@
 
 
 # ------------------------------------------------------------------------------------------------------------
-
-  # ---------------------------
-# Base image (Ubuntu)
 # ---------------------------
-FROM ubuntu:22.04 AS base
+# Base image (Alpine with Node)
+# ---------------------------
+FROM node:22-alpine AS base
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install system dependencies + Node.js
-RUN apt-get update && apt-get install -y \
-    curl \
-    ca-certificates \
-    gnupg \
-    libc6 \
-  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
-  && apt-get install -y nodejs \
-  && npm install -g yarn \
-  && rm -rf /var/lib/apt/lists/*
-
+# Set up working directory
 WORKDIR /app
+
+# Install system dependencies needed for building modules
+RUN apk add --no-cache \
+  curl \
+  bash \
+  python3 \
+  make \
+  g++  \
+  && npm install -g yarn
 
 # ---------------------------
 # Dependencies stage
@@ -129,6 +125,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Copy production env if needed
 COPY prod.env .env.production
 
 RUN yarn build
@@ -136,23 +133,26 @@ RUN yarn build
 # ---------------------------
 # Runtime stage
 # ---------------------------
-FROM base AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 
+# Set environment
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-# Create non-root user
-RUN groupadd -g 1001 nodejs \
-  && useradd -u 1001 -g nodejs nextjs
+# Add a non-root user
+RUN addgroup -S nodejs && adduser -S nextjs -G nodejs
 
+# Copy built app from builder
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Switch to non-root user
 USER nextjs
 
 EXPOSE 3000
 
 CMD ["node", "server.js"]
+
