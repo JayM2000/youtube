@@ -14,7 +14,7 @@ const VideosSection = () => {
     }
   );
 
-  return <div>{JSON.stringify(data)}</div>;
+  return <div> data rendering: {JSON.stringify(data)}</div>;
 };
 
 export default VideosSection;
