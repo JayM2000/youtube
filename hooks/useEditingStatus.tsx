@@ -8,7 +8,7 @@ export function useEditingStatus() {
   useEffect(() => {
     const socket = getSocket();
 
-    socket.on("startEditing", ({ section }) => {
+    socket.on("editingStarted", ({ section }) => {
       setActiveSection(section);
     });
 

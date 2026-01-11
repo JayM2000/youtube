@@ -7,7 +7,7 @@ import SearchInput from "./search-input";
 
 const HomeNavbar = () => {
   // const { state } = useSidebar();
-  // const isCollapsed = state === "collapsed";
+  // const isCollapsed = state === "collapsed";;
 
   const activeSection = useEditingStatus();
   console.log(

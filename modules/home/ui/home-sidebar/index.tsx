@@ -10,7 +10,7 @@ import PersonalSection from "./personal-section";
 
 const HomeSidebar = () => {
   const { isMobile } = useSidebar();
-  // const isCollapsed = state === "collapsed";
+  // const isCollapsed = state === "collapsed";;
   
   const activeSection = useEditingStatus();
   console.log(

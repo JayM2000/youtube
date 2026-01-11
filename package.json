@@ -9,7 +9,7 @@
     "socket:server": "npx tsx server.ts",
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
