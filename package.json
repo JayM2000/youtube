@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:all": "concurrently --kill-others-on-fail \"yarn dev:webhook\" \"yarn socket:server\" \"yarn watch:files\" ",
+    "dev:all": "concurrently --kill-others-on-fail \"yarn dev:webhook\" \"yarn dev\" \"yarn watch:files\" ",
     "dev:webhook": "ngrok http --url=properly-cool-sawfly.ngrok-free.app 3000",
     "watch:files": "npx tsx lib/watch-files.ts",
     "socket:server": "npx tsx server.ts",
