@@ -1,12 +1,20 @@
 "use client";
+import { useEditingStatus } from "@/hooks/useEditingStatus";
 import AuthButton from "@/modules/auth/ui/auth-button";
-import HeaderLogoMenu from "./header-logo-menu";
 import StudioUploadModal from "../../components/studio-upload-modal";
+import HeaderLogoMenu from "./header-logo-menu";
 // import { useSidebar } from "@/components/ui/sidebar";
 
 const StudioNavbar = () => {
   // const { state } = useSidebar();
   // const isCollapsed = state === "collapsed";
+  
+  const activeSection = useEditingStatus();
+  console.log(
+    activeSection,
+    "✅✅✅✅✅✅✅✅✅✅✅✅✅",
+    "we got update from socket and header file is getting updated"
+  );
 
   return (
     <nav

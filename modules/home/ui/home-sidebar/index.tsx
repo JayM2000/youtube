@@ -1,15 +1,23 @@
 "use client";
 
+import ThemeSwitcher from "@/components/Customs/theme-switcher";
 import { Separator } from "@/components/ui/separator";
 import { Sidebar, SidebarContent, useSidebar } from "@/components/ui/sidebar";
+import { useEditingStatus } from "@/hooks/useEditingStatus";
+import { cn } from "@/lib/utils";
 import MainSection from "./main-section";
 import PersonalSection from "./personal-section";
-import ThemeSwitcher from "@/components/Customs/theme-switcher";
-import { cn } from "@/lib/utils";
 
 const HomeSidebar = () => {
   const { isMobile } = useSidebar();
   // const isCollapsed = state === "collapsed";
+  
+  const activeSection = useEditingStatus();
+  console.log(
+    activeSection,
+    "✅✅✅✅✅✅✅✅✅✅✅✅✅",
+    "we got update from socket and sidebar file is getting updated"
+  );
 
   return (
     <Sidebar
