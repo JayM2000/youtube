@@ -1,12 +1,23 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import CustomLoader from "@/lib/CustomLoader";
 import { trpc } from "@/trpc/client";
 import { PlusIcon } from "lucide-react";
-import React from "react";
+import { toast } from "sonner";
 
 const StudioUploadModal = () => {
-  const create = trpc.videos.create.useMutation();
+  const utils = trpc.useUtils();
+  const create = trpc.videos.create.useMutation({
+    onSuccess: () => {
+      toast.success("Video created successfully");
+      utils.studio.getMany.invalidate();
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Something went wrong while creating video.");
+    },
+  });
 
   return (
     <Button
@@ -14,8 +25,13 @@ const StudioUploadModal = () => {
       onClick={() => {
         create.mutate();
       }}
+      disabled={create.isPending}
     >
-      <PlusIcon />
+      {create.isPending ? (
+        <CustomLoader height={22} width={22} />
+      ) : (
+        <PlusIcon />
+      )}
       Create
     </Button>
   );

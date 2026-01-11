@@ -1,13 +1,15 @@
+import { Toaster } from "@/components/ui/sonner";
+import { TRPCProvider } from "@/trpc/client";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Fredoka } from "next/font/google";
 import "./globals.css";
-import { TRPCProvider } from "@/trpc/client";
 
 export const metadata: Metadata = {
   title: "Novaroe | Next-Gen Video Platform for Creators & Viewers",
-  description: "Novaroe is a dynamic video streaming site where you can upload content, discover trending videos, and connect with your audience.",
+  description:
+    "Novaroe is a dynamic video streaming site where you can upload content, discover trending videos, and connect with your audience.",
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico", // optional Apple-specific icon
@@ -35,6 +37,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <Toaster />
               {children}
             </ThemeProvider>
           </TRPCProvider>
