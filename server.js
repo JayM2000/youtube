@@ -3,8 +3,10 @@ import next from "next";
 import { Server as SocketIOServer } from "socket.io";
 
 const dev = process.env.NODE_ENV !== "production";
+const PORT = process.env.PORT || 3000;
 const app = next({
   dev,
+  port: PORT,
 });
 const handle = app.getRequestHandler();
 
@@ -27,6 +29,7 @@ app.prepare().then(() => {
     console.log("🥳 Client connected:", socket.id);
 
     socket.on("startEditing", (data) => {
+      console.log('⚠️ calling from server.js file ', PORT, dev);
       io.emit("editingStarted", data);
     });
 
@@ -39,7 +42,6 @@ app.prepare().then(() => {
     });
   });
 
-  const PORT = 3000;
   server.listen(PORT, () => {
     console.log(`🚀 Running on http://localhost:${PORT}`);
   });

@@ -6,7 +6,8 @@ let socket: Socket;
 
 export const getSocket = () => {
   if (!socket) {
-    socket = io(`https://youtube-2-xa9z.onrender.com`, {
+    const ui_url = process.env.NEXT_PUBLIC_REDIRECT_URL || "";
+    socket = io(ui_url, {
       transports: ["websocket", "polling"], // Let it fallback if WS fails
       reconnection: true,
     });

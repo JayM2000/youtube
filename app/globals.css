@@ -468,3 +468,36 @@
   text-shadow: -1px -1px 0 darken(--btn-search-hover-bg, 9.5%);
   transition: all 250ms linear;
 } */
+
+
+/*  highlight header section for header files changes */
+.highlight-header-section {
+  border: 3px solid #888;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  /* border: 3px solid #888;
+  border-radius: 8px;
+  animation: glow5s 5s ease-in-out; */
+}
+
+/* Keyframes for glowing pulse animation */
+@keyframes glowAnimation {
+  0% {
+    border-color: #ffeb3b;
+    box-shadow: 0 0 5px #ffeb3b;
+  }
+  50% {
+    border-color: #ffeb3b;
+    box-shadow: 0 0 15px 5px #ffeb3b;
+  }
+  100% {
+    border-color: #ffeb3b;
+    box-shadow: 0 0 5px #ffeb3b;
+  }
+}
+
+/* Apply animation when glow class is active */
+.glow {
+  border-color: #ffeb3b;
+  animation: glowAnimation 1s ease-in-out infinite;
+}
