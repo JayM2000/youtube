@@ -10,11 +10,11 @@ const StudioNavbar = () => {
   // const isCollapsed = state === "collapsed";
   
   const activeSection = useEditingStatus();
-  console.log(
-    activeSection,
-    "✅✅✅✅✅✅✅✅✅✅✅✅✅",
-    "we got update from socket and header file is getting updated"
-  );
+  // console.log(
+  //   activeSection,
+  //   "✅✅✅✅✅✅✅✅✅✅✅✅✅",
+  //   "we got update from socket and header file is getting updated"
+  // );
 
   return (
     <nav

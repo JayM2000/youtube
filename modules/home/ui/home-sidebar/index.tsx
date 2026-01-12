@@ -13,11 +13,11 @@ const HomeSidebar = () => {
   // const isCollapsed = state === "collapsed";
   
   const activeSection = useEditingStatus();
-  console.log(
-    activeSection,
-    "✅✅✅✅✅✅✅✅✅✅✅✅✅",
-    "we got update from socket and sidebar file is getting updated"
-  );
+  // console.log(
+  //   activeSection,
+  //   "✅✅✅✅✅✅✅✅✅✅✅✅✅",
+  //   "we got update from socket and sidebar file is getting updated"
+  // );
 
   return (
     <Sidebar

@@ -32,7 +32,7 @@ const StudioUploadModal = () => {
       ) : (
         <PlusIcon />
       )}
-      Createe
+      Create
     </Button>
   );
 };

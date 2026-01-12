@@ -2,14 +2,20 @@
 import { useEffect, useState } from "react";
 import { getSocket } from "@/lib/socket";
 
+export type SocketData = {
+  section: string;
+  uniqueId: string;
+  name?: string;
+}
+
 export function useEditingStatus() {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<SocketData | null>(null);
 
   useEffect(() => {
     const socket = getSocket();
 
-    socket.on("editingStarted", ({ section }) => {
-      setActiveSection(section);
+    socket.on("editingStarted", ({ section, uniqueId }) => {
+      setActiveSection({section, uniqueId});
     });
 
     socket.on("editingStopped", () => {
