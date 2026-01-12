@@ -5,27 +5,10 @@ on:
     branches: [main] # Only run this workflow on merge/push to main
 
 jobs:
-  checks:
-    name: Run Checks
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: "22"
-
-      - name: Install dependencies
-        run: yarn install
-
   # This job is optional — see note below
   check-merge-source:
     name: Prevent direct merge to main (DEV only)
     runs-on: ubuntu-latest
-    needs: checks
 
     steps:
       - name: Fail if main commit not from dev
@@ -34,17 +17,17 @@ jobs:
           # Get the branch that triggered the push
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           # When committing directly to main (not merge), abort
-          if [[ "$BRANCH_NAME" == "main" && "$GITHUB_EVENT_NAME" == "push" ]]; then
+          if [[ "${{ github.head_ref }}" == "main" ]]; then
             echo "Push directly to main detected."
             echo "Use pull requests from dev branch only."
             exit 1
           fi
           echo "Merge source OK."
 
-  ci-deploy:
+  ci:
     name: CI & Deploy to Render
     runs-on: ubuntu-latest
-    needs: [checks, check-merge-source]
+    needs: check-merge-source
 
     steps:
       - name: Checkout code
