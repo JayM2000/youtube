@@ -20,6 +20,7 @@ const sectionMap: Record<string, Section> = {
   HomeSidebar: "sidebar",
   StudioView: "MainView",
   HomeView: "MainView",
+  CategorySection: "MainView",
 };
 
 function extractComponentName(content: string): string | null {
