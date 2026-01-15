@@ -1,5 +1,6 @@
 "use client";
 
+import ThemeSwitcher from "@/components/Customs/theme-switcher";
 import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
@@ -11,21 +12,42 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useEditingStatus } from "@/hooks/useEditingStatus";
+import { cn } from "@/lib/utils";
 import { LogOutIcon, VideoIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import StudioSidebarHeader from "./studio-sidebar-header";
-import ThemeSwitcher from "@/components/Customs/theme-switcher";
-import { cn } from "@/lib/utils";
 
 const StudioSidebar = () => {
   const { isMobile } = useSidebar();
   // const isCollapsed = state === "collapsed";
   const pathname = usePathname();
 
+  const [isHeaderUpdated, setIsHeaderUpdated] = useState<boolean>(false);
+
+  const activeSection = useEditingStatus();
+  const { section, uniqueId } = activeSection ?? {};
+
+  useEffect(() => {
+    if (section === "sidebar") {
+      setIsHeaderUpdated(true);
+      console.log("highlight started");
+      setTimeout(() => {
+        setIsHeaderUpdated(false);
+
+        console.log("highlight stopped");
+      }, 4000);
+    }
+  }, [uniqueId]);
+
   return (
     <Sidebar
-      className="z-40 border-none box mt-[50px] pt-[14px] shadow-[1px_0px_5px_rgba(0,0,0,0.35)]"
+      className={cn(
+        "z-40 border-none box mt-[50px] pt-[14px] shadow-[1px_0px_5px_rgba(0,0,0,0.35)]",
+        isHeaderUpdated ? "glow" : ""
+      )}
       collapsible="icon"
     >
       {/* <HeaderLogoMenu isCollapsed={false} /> */}

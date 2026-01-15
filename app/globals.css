@@ -82,6 +82,8 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --hover-search-border-color: #ff8c00;
   --btn-search-hover-bg: oklch(94.611% 0.00011 271.152);
+  --highlight-color: #1890ff; /* bright glow */
+  --highlight-color-light: #4db8ff; /* softer glow */
 }
 
 .dark {
@@ -122,6 +124,8 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
   --hover-search-border-color: #969696;
   --btn-search-hover-bg: oklch(32.897% 0.00004 271.152);
+  --highlight-color: #40a9ff;
+  --highlight-color-light: #85caff;
 }
 
 @layer base {
@@ -471,13 +475,12 @@
 
 
 /*  highlight header section for header files changes */
-.highlight-header-section {
+.highlight-header-section-1 {
   border: 3px solid #888;
   border-radius: 8px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  /* border: 3px solid #888;
-  border-radius: 8px;
-  animation: glow5s 5s ease-in-out; */
+  /* border-color: #ffeb3b; */
+  /* animation: glowAnimation 1s ease-in-out infinite; */
 }
 
 /* Keyframes for glowing pulse animation */
@@ -496,8 +499,26 @@
   }
 }
 
-/* Apply animation when glow class is active */
-.glow {
-  border-color: #ffeb3b;
-  animation: glowAnimation 1s ease-in-out infinite;
+
+/* Highlight + glowing animation */
+.highlight-header-section {
+  border: 2px solid var(--highlight-color);
+  animation: glowPulse 1.8s ease-in-out infinite;
 }
+
+/* Keyframes for pulse glow */
+@keyframes glowPulse {
+  0% {
+    border-color: var(--highlight-color-light);
+    box-shadow: 0 0 8px var(--highlight-color-light), 0 0 15px var(--highlight-color-light);
+  }
+  50% {
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 18px var(--highlight-color), 0 0 30px var(--highlight-color);
+  }
+  100% {
+    border-color: var(--highlight-color-light);
+    box-shadow: 0 0 8px var(--highlight-color-light), 0 0 15px var(--highlight-color-light);
+  }
+}
+

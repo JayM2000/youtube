@@ -6,16 +6,14 @@ dotenv.config();
 import chokidar from "chokidar";
 import fs from "fs";
 import { io } from "socket.io-client";
-// type SectionEvent = {
-//   type: "editing";
-//   section: "header" | "sidebar" | "body";
-// };
+
+export type Section = "header" | "sidebar" | "MainView";
 
 const ui_url = process.env.NEXT_PUBLIC_REDIRECT_URL || "";
 const socket = io(ui_url);
 
 // Mapping component names to sections:
-const sectionMap: Record<string, "header" | "sidebar" | "MainView"> = {
+const sectionMap: Record<string, Section> = {
   HomeNavbar: "header",
   StudioNavbar: "header",
   StudioSidebar: "sidebar",
@@ -41,11 +39,14 @@ watcher.on("change", (path) => {
 
   if (name && sectionMap[name]) {
     // console.log(now.getTime());
-    socket.emit("startEditing", {
+    const event = "startEditing";
+    const eventPayload = {
       section: sectionMap[name],
       fileName: name,
       uniqueId: now.getTime(),
-    });
+    };
+
+    socket.emit(event, eventPayload);
   }
 });
 

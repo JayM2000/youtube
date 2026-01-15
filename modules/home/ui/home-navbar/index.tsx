@@ -11,22 +11,22 @@ const HomeNavbar = () => {
   // const { state } = useSidebar();
   // const isCollapsed = state === "collapsed";
 
-  const [isHeaderUpdated, setIsHeaderUpdated] = useState<boolean>(false);
+  // const [isHeaderUpdated, setIsHeaderUpdated] = useState<boolean>(false);
 
-  const activeSection= useEditingStatus();
-  const { section, uniqueId } = activeSection ?? {};
+  // const activeSection = useEditingStatus();
+  // const { section, uniqueId } = activeSection ?? {};
 
-  useEffect(() => {
-    if (section === "header") {
-      setIsHeaderUpdated(true);
-      console.log('highlight started');
-      setTimeout(() => {
-        setIsHeaderUpdated(false);
-        
-      console.log('highlight stopped');
-      }, 4000);
-    }
-  }, [uniqueId]);
+  // useEffect(() => {
+  //   if (section === "header") {
+  //     setIsHeaderUpdated(true);
+  //     console.log("highlight started");
+  //     setTimeout(() => {
+  //       setIsHeaderUpdated(false);
+
+  //       console.log("highlight stopped");
+  //     }, 4000);
+  //   }
+  // }, [uniqueId]);
 
   // const isHeaderUpdated = useMemo(() => {
   //   return activeSection === "header";
@@ -35,8 +35,7 @@ const HomeNavbar = () => {
   return (
     <nav
       className={cn(
-        "fixed shadow-[0px_1px_5px_rgba(0,0,0,0.35)] bg-background top-0 left-0 right-0 h-16 flex items-center px-2 pr-5 z-50",
-        isHeaderUpdated ? "glow" : ""
+        "fixed shadow-[0px_1px_5px_rgba(0,0,0,0.35)] bg-background top-0 left-0 right-0 h-16 flex items-center px-2 pr-5 z-50"
       )}
     >
       <div className="flex items-center gap-4 w-full">

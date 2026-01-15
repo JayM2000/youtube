@@ -3,7 +3,10 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'standalone',
+  content: [
+    "./node_modules/onborda/dist/**/*.{js,ts,jsx,tsx}", // Add this
+  ],
+  output: "standalone",
   eslint: {
     ignoreDuringBuilds: true, // skips ESLint error checks during build
   },
@@ -20,6 +23,6 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-};
+}; 
 
 export default nextConfig;
