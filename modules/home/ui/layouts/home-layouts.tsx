@@ -21,7 +21,7 @@ export const HomeLayout = ({ children }: HomeLayoutProps) => {
     if (isHomePage !== "true") {
       setTimeout(() => {
         router.push("/under-construction");
-      }, 3000);
+      }, 2500);
     }
   }, [isHomePage, router]);
 
