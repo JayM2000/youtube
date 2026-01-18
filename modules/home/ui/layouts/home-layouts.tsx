@@ -2,7 +2,7 @@
 import LoadingUI from "@/components/Loading/loading";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import SpotlightWrapper from "@/lib/tour/spotlight-wrapper";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import HomeNavbar from "../home-navbar";
@@ -31,43 +31,45 @@ export const HomeLayout = ({ children }: HomeLayoutProps) => {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }} // starting animation
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <SidebarProvider>
-        <div className="w-full">
-          {/* header content */}
-          <SpotlightWrapper
-            tooltip="This button does something important!"
-            placement="below"
-            childType="header"
-          >
-            <HomeNavbar />
-          </SpotlightWrapper>
-
-          <div className="flex min-h-screen pt-[4rem]">
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }} // starting animation
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <SidebarProvider>
+          <div className="w-full">
+            {/* header content */}
             <SpotlightWrapper
               tooltip="This button does something important!"
-              placement="right"
-              childType="sidebar"
+              placement="below"
+              childType="header"
             >
-              <HomeSidebar />
+              <HomeNavbar />
             </SpotlightWrapper>
 
-            <main className="main-content flex-1 overflow-y-auto">
+            <div className="flex min-h-screen pt-[4rem]">
               <SpotlightWrapper
                 tooltip="This button does something important!"
-                placement="above"
-                childType="MainView"
+                placement="right"
+                childType="sidebar"
               >
-                {children}
+                <HomeSidebar />
               </SpotlightWrapper>
-            </main>
+
+              <main className="main-content flex-1 overflow-y-auto">
+                <SpotlightWrapper
+                  tooltip="This button does something important!"
+                  placement="above"
+                  childType="MainView"
+                >
+                  {children}
+                </SpotlightWrapper>
+              </main>
+            </div>
           </div>
-        </div>
-      </SidebarProvider>
-    </motion.div>
+        </SidebarProvider>
+      </motion.div>
+    </AnimatePresence>
   );
 };
