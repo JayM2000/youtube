@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en" suppressHydrationWarning>
-        <body className={googleFonts.className}>
+        <body className={`${googleFonts.className} underconstruction`}>
           <TRPCProvider>
             <ThemeProvider
               attribute="class"

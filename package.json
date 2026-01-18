@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail \"yarn dev:webhook\" \"yarn next:dev\" \"yarn watch:files\" ",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev:webhook\" \"yarn next:dev\"",
+    "dev:watch": "concurrently --kill-others-on-fail \"yarn dev:webhook\" \"yarn next:dev\" \"yarn watch:files\" ",
     "dev:webhook": "ngrok http --url=properly-cool-sawfly.ngrok-free.app 3000",
     "watch:files": "nodemon --watch lib/watch-files.ts --ext ts --exec \"npx tsx lib/watch-files.ts\"",
     "next:dev": "next dev --turbopack",

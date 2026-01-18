@@ -2,9 +2,21 @@
 
 import { DEFAULT_LIMIT } from "@/app/constants";
 import { trpc } from "@/trpc/client";
-import React from "react";
+import React, { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
-const VideosSection = () => {
+export const VideoSection = () => {
+
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <ErrorBoundary fallback={<p>Error</p>}>
+        <VideosSectionSuspense />
+      </ErrorBoundary>
+    </Suspense>
+  )
+}
+
+const VideosSectionSuspense = () => {
   const [data] = trpc.studio.getMany.useSuspenseInfiniteQuery(
     {
       limit: DEFAULT_LIMIT,
@@ -17,4 +29,4 @@ const VideosSection = () => {
   return <div> data rendering: {JSON.stringify(data)}</div>;
 };
 
-export default VideosSection;
+export default VideosSectionSuspense;
