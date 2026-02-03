@@ -3,9 +3,7 @@ import { users } from "@/db/schemas/usersSchema";
 import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
-import dotenv from "dotenv";
 
-dotenv.config({ path: ".env" });
 // export async function GET(req: NextRequest) {
 //   try {
 //     return new Response("Webhook received TEST GET call", { status: 200 });
@@ -27,7 +25,7 @@ dotenv.config({ path: ".env" });
 export async function POST(req: NextRequest) {
   try {
     const evt = await verifyWebhook(req, {
-      signingSecret: process.env.CLERK_WEBHOOK_SECRET,
+      signingSecret: process.env.CLERK_WEBHOOK_SIGNING_SECRET,
     });
 
     // Do something with payload
