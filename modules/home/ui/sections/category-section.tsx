@@ -32,7 +32,7 @@ const CategorySection = ({ categoryId }: CategorySectioProps) => {
 
   return (
     <Suspense fallback={<FilterCarousal isLoading={true} data={[]} />}>
-      <ErrorBoundary fallback={<p>Error occured...</p>}>
+      <ErrorBoundary fallback={<p>Error...</p>}>
         <FilterCarousal
           onSelect={onSelect}
           isLoading={false}
